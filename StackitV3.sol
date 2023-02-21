@@ -1,5 +1,5 @@
 pragma solidity 0.8.7;
-import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
+import '@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol';
 import '@openzeppelin/contracts/utils/math/SafeMath.sol';
 import '@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol';
 import '@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol';
@@ -53,15 +53,14 @@ interface IDIADaptor {
 
 contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUpgradeable {
     using SafeMath for uint256;
+    using SafeERC20 for IERC20;
 
     address public treasury;
     address public Referrals;
-    address public feeToken;
     address public DIADaptor;
     address public ReferralFeesAggregator;
     address public stargateRouter;
     address public Keeper;
-    uint256 public trxCostPercentFee;
     uint256 public treasuryInboundFees;
     uint256 public treasuryOutboundFees;
     uint256 public buybackFees;
@@ -161,15 +160,12 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
     }
 
     function initialize(
-        address _feeToken,
         address _DIADaptor,
         address _AGGREGATION_ROUTER_V5) public initializer {
         treasury = msg.sender;
         treasuryInboundFees = 10; //1%
         treasuryOutboundFees = 10; //1%
-        trxCostPercentFee = 10; //10%
         MAX_INT = 2**256 - 1;
-        feeToken = _feeToken;
         DIADaptor = _DIADaptor;
         AGGREGATION_ROUTER_V5 = _AGGREGATION_ROUTER_V5;
         __Ownable_init();
@@ -187,18 +183,6 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
         } else {
             return 0;
         }
-    }
-
-    function giveRouterAllowances(address _buyWith, address _router) internal {
-        IERC20(_buyWith).approve(_router, MAX_INT);
-    }
-
-    function giveRoutersPurchaseAllowance(address _buyWith, address _router) internal {
-        IERC20(_buyWith).approve(_router, MAX_INT);
-    }
-
-    function giveVaultAllowances(address _buyWith, address _vault) internal {
-        IERC20(_buyWith).approve(_vault, MAX_INT);
     }
 
     function getStreamAggregatedDiscount(uint256 _count) public view returns (uint256) {
@@ -339,7 +323,6 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
         ReferralFeesAggregator = _ReferralFeesAggregator;
     }
 
-
     function setOracle(address _DIADaptor) public onlyOwner {
         DIADaptor = _DIADaptor;
     }
@@ -363,12 +346,11 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
 
     function setFees(
         uint256 _treasuryInboundFees,
-        uint256 _treasuryOutboundFees,
-        uint256 _trxCostPercentFee
+        uint256 _treasuryOutboundFees
         ) public onlyOwner {
+        require(_treasuryInboundFees <= 50 && _treasuryOutboundFees <= 50,"Incorrect Fees");
         treasuryInboundFees = _treasuryInboundFees;
         treasuryOutboundFees = _treasuryOutboundFees;
-        trxCostPercentFee = _trxCostPercentFee;
     }
 
     function addAssetVault(
@@ -401,7 +383,7 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
         uint256 _iteration,
         uint256 _startTime,
         bool _yieldActive) 
-        external whenNotPaused {
+        external whenNotPaused nonReentrant {
         address buyWith = _buyWith;
         require(_amount >= minimumAmountPerBuy[buyWith] ,"Please add more than the minimum amount per buy");
         if (msg.sender != owner()) {
@@ -452,7 +434,7 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
         
         list[msg.sender].push(count);
         //deposit to our contracts
-        IERC20(buyWith).transferFrom(msg.sender, address(this), totalAmountAdjusted);
+        IERC20(buyWith).safeTransferFrom(msg.sender, address(this), totalAmountAdjusted);
 
         if (streamYield[count]) {
             _depositToVault(count, totalAmountAdjusted, false);
@@ -474,7 +456,7 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
         uint256 _startTime,
         bool _yieldActive
         ) 
-        external whenNotPaused {
+        external whenNotPaused nonReentrant {
         address buyWith = _buyWith;
         require(_amount >= minimumAmountPerBuy[buyWith] ,"Please add more than the minimum amount per buy");
         if (msg.sender != owner()) {
@@ -526,7 +508,7 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
 
         list[msg.sender].push(count);
         //deposit to our contracts
-        IERC20(buyWith).transferFrom(msg.sender, address(this), totalAmountAdjusted);
+        IERC20(buyWith).safeTransferFrom(msg.sender, address(this), totalAmountAdjusted);
         if (streamYield[count]) {
             _depositToVault(count, totalAmountAdjusted, false);
         } else {
@@ -542,7 +524,7 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
             streamBasketOfAsset[count] = _streamBasketOfAsset;
             uint256 assetLen = _streamBasketOfAsset.length;
             uint256 reapLen = _streamAggregateRepartition.length;
-            require(assetLen == assetLen, "Invalid repatition among assets");
+            require(assetLen == reapLen, "Invalid repatition among assets");
                 
             uint256 mathCheck;
             for (uint256 i = 0; i < assetLen; i++) {
@@ -562,14 +544,14 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
         address assetUsed = s.buyWith;
 
         uint256 balStargateBefore = IERC20(stargateAsset[assetUsed]).balanceOf(address(this));
-        giveVaultAllowances(assetUsed, stargateRouter);
+        IERC20(assetUsed).safeApprove(stargateRouter, amount);
         IStargate(stargateRouter).addLiquidity(stargatePoolID[assetUsed],amount,address(this));
         uint256 balStargateAfter = IERC20(stargateAsset[assetUsed]).balanceOf(address(this));
 
         uint256 stargateReceived = balStargateAfter.sub(balStargateBefore);
 
         //give proper allowance to vault
-        giveVaultAllowances(stargateAsset[assetUsed], v.vault);
+        IERC20(stargateAsset[assetUsed]).safeApprove(v.vault, stargateReceived);
         //update shares and deposit to the vault
         uint256 balBefore = IERC20(v.vault).balanceOf(address(this));
 
@@ -626,7 +608,7 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
         s.totalAmount = s.totalAmount.add(totalAmountAdjusted);
         amountLeftInStream[count] = amountLeftInStream[count].add(totalAmount);
 
-        IERC20(s.buyWith).transferFrom(msg.sender, address(this), totalAmountAdjusted);
+        IERC20(s.buyWith).safeTransferFrom(msg.sender, address(this), totalAmountAdjusted);
         if (isYieldActive(count)) {
             _depositToVault(count, totalAmountAdjusted, true);
         } else {
@@ -674,7 +656,7 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
             amountLeftInStream[count] = 0;
         }
 
-        IERC20(s.buyWith).transfer(s.owner,receivedAssets);
+        IERC20(s.buyWith).safeTransfer(s.owner,receivedAssets);
     }
 
     function convertCompoundedAmount(uint256 count) external nonReentrant onlyKeeper {
@@ -751,7 +733,7 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
         s.lastSwap = block.timestamp;
     }
 
-    function executeBuy(uint256 count,bytes calldata _data, bool _swapSimple) public onlyKeeper {
+    function executeBuy(uint256 count,bytes calldata _data, bool _swapSimple) public onlyKeeper nonReentrant {
         Stream storage s = streams[count];
         require(streamReady[count],"Stream isnt ready yet");
 
@@ -778,15 +760,15 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
                 bought = s.toBuy;
             }
             uint256 assetBalBefore = IERC20(bought).balanceOf(address(this));
-            IERC20(s.buyWith).approve(AGGREGATION_ROUTER_V5,2**256 - 1);
+            IERC20(s.buyWith).safeApprove(AGGREGATION_ROUTER_V5,desc.amount);
 
             (bool succ,) = address(AGGREGATION_ROUTER_V5).call(_data);
             require(succ == true, "Swap failed");
             uint256 assetBalAfter = IERC20(bought).balanceOf(address(this));
 
             uint256 _outboundFees = (assetBalAfter.sub(assetBalBefore)).mul(treasuryOutboundFees).div(1000);
-            IERC20(bought).transfer(s.owner, (assetBalAfter.sub(assetBalBefore)).sub(_outboundFees)); // to the user
-            IERC20(bought).transfer(treasury, _outboundFees); // to the treasury
+            IERC20(bought).safeTransfer(s.owner, (assetBalAfter.sub(assetBalBefore)).sub(_outboundFees)); // to the user
+            IERC20(bought).safeTransfer(treasury, _outboundFees); // to the treasury
 
             //If multiple stream, we exec for the lenght of the basket of assets, turning to false when all assets have been bought
             //otherwise we just keep with the normal exec
@@ -842,10 +824,10 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
 
         uint256 toRef = totalFee.mul(IReferral(Referrals).getUserReferralFees(wasReferredFrom)).div(100);
 
-        IERC20(_buyWith).transfer(treasury, (totalFee.sub(toRef).sub(discount)));  // to the Treasury
-        IERC20(_buyWith).transfer(wasReferredFrom, toRef);  // to ref
+        IERC20(_buyWith).safeTransfer(treasury, (totalFee.sub(toRef).sub(discount)));  // to the Treasury
+        IERC20(_buyWith).safeTransfer(wasReferredFrom, toRef);  // to ref
         IReferralAggregator(ReferralFeesAggregator).addAmountToUser(toRef,s.toBuy,wasReferredFrom);
-        IERC20(_buyWith).transfer(_user, discount); // to user as discount
+        IERC20(_buyWith).safeTransfer(_user, discount); // to user as discount
 
         uint256 buyAmount = _amount.sub(totalFee);
         return buyAmount;
