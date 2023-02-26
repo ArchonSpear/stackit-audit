@@ -50,7 +50,7 @@ interface IWETH {
 interface IDIADaptor {
     function getUnderlyingPrice(address cToken) external view returns (uint256);
 }
-
+  
 contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUpgradeable {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
@@ -63,10 +63,8 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
     address public Keeper;
     uint256 public treasuryInboundFees;
     uint256 public treasuryOutboundFees;
-    uint256 public buybackFees;
     uint256[] public allStreams;
     uint256[] public activeStreams;
-    uint256[] private _amountsOut;
 
     struct Stream {
         uint256 amount;
@@ -279,7 +277,6 @@ contract StackitV3 is ReentrancyGuardUpgradeable, OwnableUpgradeable, PausableUp
     }
 
     function getNextAssetToSwap(uint256 _count) public view returns (address) {
-        address[] memory addresses = streamBasketOfAsset[_count];
         address bought = streamBasketOfAsset[_count][streamReadyMultiple[_count]];
         return bought;
     }

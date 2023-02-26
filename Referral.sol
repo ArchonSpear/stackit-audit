@@ -21,7 +21,6 @@ using SafeMath for uint256;
     uint256 public maxReferral;
     uint256 public defaultReferralLink;
     address public DIADaptor;
-    uint256 public tester;
 
     uint256[] public discountArray;
     uint256[] public referralArray;
@@ -38,8 +37,6 @@ using SafeMath for uint256;
     mapping(address => uint256) public whitelistedDiscount;
     mapping(address => uint256) public whitelistedReferralFees;
     mapping(address => bool) public canChangeReferralLink;
-
-    mapping(address => bool) public userInSharedStream;
 
     /**
      * Constructor.
@@ -61,11 +58,6 @@ using SafeMath for uint256;
     function setDefaultReferralLink(uint256 _defaultReferralLink) public onlyOwner {
         defaultReferralLink = _defaultReferralLink;
     }
-
-
-    function isInSharedStream(address _user) public view returns (bool) {
-        return userInSharedStream[_user];
-    }   
 
     function setAssetMultiplier(address _asset, uint256 _assetMultiplier) public onlyOwner {
         require(_asset != address(0), "No 0 addresses ser");
@@ -234,7 +226,7 @@ using SafeMath for uint256;
             uint256 totalTVL = count;
             uint256 arraylen = discountArray.length;
 
-            for (uint256 i = 0; i < arraylen; i++) {
+            for (uint256 i = 0; i < arraylen -1 ; i++) {
                 if (totalTVL > discountArray[i] && totalTVL <= discountArray[i+1]) {
                     //core logic
                     discount = discountPercentOnReferralCount[discountArray[i]];
