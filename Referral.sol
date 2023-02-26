@@ -252,7 +252,7 @@ using SafeMath for uint256;
             uint256 count = getUserTVL(_user);
             uint256 totalTVL = count;
             uint256 arraylen = referralArray.length;
-            for (uint256 i = 0; i < arraylen; i++) {
+            for (uint256 i = 0; i < arraylen -1; i++) {
                 if (totalTVL > referralArray[i] && totalTVL <= referralArray[i+1]) {
                     //core logic
                     referralFee = referralPercentOnReferralCount[referralArray[i]];
