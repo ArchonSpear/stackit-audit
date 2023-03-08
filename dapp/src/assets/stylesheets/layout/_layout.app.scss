@@ -1,0 +1,10 @@
+/* #LAYOUT - APP
+		1. App default
+*/
+
+// 1. App default
+#__next {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}

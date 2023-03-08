@@ -1,0 +1,17 @@
+/* #LAYOUT - FOOTER
+		1. Footer default
+*/
+
+// 1. Footer default
+.l-footer {
+	background-color: $GREY_100;
+	text-align: center;
+	padding: $PX_22;
+}
+.l-footer p,
+.l-footer a {
+	color: $WHITE;
+}
+.l-footer a {
+	text-decoration: none;
+}

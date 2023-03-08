@@ -1,0 +1,73 @@
+/* #COMPONENTS - NAVBAR
+		1. Navbar default
+		2. Navbar responsive
+*/
+
+// 1. Navbar default
+.navbar,
+.navbar__left,
+.navbar__right {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.navbar {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 1;
+	background-color: $HERO_BG;
+	padding: $PX_20 $PX_24;
+	justify-content: space-between;
+}
+.navbar nav a,
+.navbar__right a {
+	text-decoration: none;
+	margin-right: $PX_32;
+	color: $GREY;
+}
+.navbar nav a:last-child {
+	margin-right: 0;
+}
+.navbar nav a[data-disabled='true'] {
+	pointer-events: none;
+	color: $GREY_60;
+}
+.navbar a.active {
+	border-bottom: 1px solid $GREY;
+}
+.navbar .btn--hamburger {
+	display: none;
+}
+.navbar__left {
+	gap: $PX_42;
+}
+.navbar__left .logo {
+	display: flex;
+}
+
+// 2. Navbar responsive
+@media screen and (max-width: $PX_990) {
+	.navbar .btn--hamburger {
+		display: inline-flex;
+		background-color: $TRANSPARENT;
+	}
+	.navbar nav {
+		transition: $TRANSITION_ALL;
+		display: none;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		transform: translateY(-100%);
+		background-color: $GREY_100;
+		z-index: 9;
+		margin-right: 0;
+	}
+	.navbar nav.is-active {
+		display: block;
+		transform: translateY(100%);
+	}
+}

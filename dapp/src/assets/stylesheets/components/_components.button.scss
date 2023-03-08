@@ -1,0 +1,113 @@
+/* #COMPONENTS - BUTTON
+		1. Button default
+		2. Button sizes
+		3. Button color
+		4. Button misc
+*/
+
+// 1. Button default
+.btn {
+	font-family: $FONT_MEDIUM;
+	appearance: none;
+	user-select: none;
+	position: relative;
+	white-space: nowrap;
+	vertical-align: middle;
+	transition: $TRANSITION_ALL;
+	border: 0;
+	cursor: pointer;
+	outline: 0;
+	min-height: $PX_40;
+	width: 100%;
+	border-radius: $BORDER_RADIUS_8;
+}
+.btn[disabled] {
+	background-color: $GREY_20;
+	color: $GREY_40;
+	cursor: not-allowed;
+}
+
+// 2. Button sizes
+.btn--sm {
+	font-size: $PX_14;
+	padding: $PX_10 $PX_20;
+	min-height: auto;
+}
+.btn--md {
+	padding: $PX_10 $PX_22;
+}
+.btn--lg {
+	text-align: center;
+	padding: $PX_10;
+}
+
+// 3. Button color
+.btn--gradient {
+	background: $PEACH_LINEAR_GRADIENT;
+}
+.btn--yellow {
+	background-color: $YELLOW;
+	color: $WHITE;
+}
+.btn--red {
+	background-color: $RED;
+	color: $WHITE;
+}
+.btn--green {
+	background-color: $GREEN;
+	color: $WHITE;
+}
+.btn--transparent {
+	background-color: $TRANSPARENT;
+}
+
+// 4. Button misc
+.btn--close {
+	display: inline-flex;
+}
+.btn--close:hover {
+	transform: rotate(180deg);
+}
+.btn--wallet {
+	padding: $PX_40;
+	background-color: $TRANSPARENT;
+	border: $PX_1 solid $GREY_20;
+	border-radius: $BORDER_RADIUS_4;
+	padding: $PX_20;
+	margin-bottom: $PX_20;
+}
+.btn--wallet:hover {
+	background-color: $GREY_10;
+}
+.btn--wallet div span {
+	margin-right: $PX_10 !important;
+}
+.btn--toggle {
+	background-color: $TRANSPARENT;
+	border-top: $PX_1 solid $GREY_60;
+	border-left: $PX_1 solid $GREY_60;
+	border-right: $PX_1 solid $GREY_60;
+	padding: $PX_16;
+	color: $GREY_60;
+}
+.btn--toggle:first-of-type {
+	border-top-left-radius: $BORDER_RADIUS_8;
+}
+.btn--toggle:last-of-type {
+	border-top-right-radius: $BORDER_RADIUS_8;
+}
+.btn--toggle.is-active {
+	border-color: $WHITE;
+	color: $WHITE;
+	pointer-events: none;
+}
+.btn--unstyled {
+	padding: 0;
+	background-color: $TRANSPARENT;
+	font-size: $PX_12;
+	color: $GREY_40;
+	text-decoration: underline;
+}
+.btn--unstyled:hover {
+	color: $GREY_100;
+}

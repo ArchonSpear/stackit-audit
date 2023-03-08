@@ -1,0 +1,24 @@
+/* #SETTINGS - FONTS
+		1. Font import
+    2. Font variables
+*/
+
+// 1. Font import
+@font-face {
+	font-family: 'Satoshi Medium';
+	src: url('../../fonts/Satoshi-Medium.woff2') format('woff2'), url('../../fonts/Satoshi-Medium.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Satoshi Bold';
+	src: url('../../fonts/Satoshi-Bold.woff2') format('woff2'), url('../../fonts/Satoshi-Bold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+// 2. Font variables
+$FONT_MEDIUM: 'Satoshi Medium';
+$FONT_BOLD: 'Satoshi Bold';

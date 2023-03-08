@@ -1,0 +1,38 @@
+/* #COMPONENTS - TRANSACTION SUMMARY
+		1. Transaction summary
+*/
+
+// 1. Transaction summary
+.transaction-summary,
+.transaction-summary__row {
+	display: flex;
+}
+.transaction-summary {
+	flex-direction: column;
+	background-color: $GREY_10;
+	padding: $PX_20;
+	border-bottom-left-radius: $BORDER_RADIUS_8;
+	border-bottom-right-radius: $BORDER_RADIUS_8;
+	margin-bottom: $PX_20;
+}
+.transaction-summary__row {
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: $PX_12;
+}
+.transaction-summary__row:last-child {
+	margin-bottom: 0;
+}
+.transaction-summary__row p {
+	margin-bottom: 0;
+	font-size: $PX_14;
+}
+.transaction-summary__row p:first-child {
+	color: $GREY_40;
+}
+.transaction-summary .btn {
+	width: 90%;
+	align-self: center;
+	margin-top: $PX_5;
+}

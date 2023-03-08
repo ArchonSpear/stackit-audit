@@ -1,0 +1,339 @@
+//-----------------------------------------------------------------------------------------------//
+import { Assets } from '../constants/assets';
+import { Chains } from '../constants/chains';
+import { Addresses } from '../constants/addresses';
+import { BN } from '../types/bn';
+import { Stackit } from './Stackit';
+
+
+//-----------------------------------------------------------------------------------------------//
+describe.skip('Stackit', () => {
+  const stackit = new Stackit(Chains.polygon);
+
+  beforeAll(() => {
+    jest.setTimeout(60000); // 1 min
+  });
+
+  describe('getCollateralPrice', () => {
+    const fn = 'getCollateralPrice';
+
+    it('should return collateral price for given token address', async () => {
+      const token = Addresses[Assets.DAI][Chains.polygon];
+      const Expected = new BN('1000000000000000000'); // 1$
+      const Received = await stackit[fn](token);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getUserShares', () => {
+    const fn = 'getUserShares';
+
+    it('should return shares for given stream id', async () => {
+      const count = new BN('0');
+      const Expected = new BN('23352376785');
+      const Received = await stackit[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getMultipleAmountForStream', () => {
+    const fn = 'getMultipleAmountForStream';
+
+    it('should return amount already swapped out of the stream', async () => {
+      const count = new BN('0');
+      const token = Addresses[Assets.DAI][Chains.polygon];
+      const Expected = new BN('0');
+      const Received = await stackit[fn](count, token);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getStreamAggregatedDiscount', () => {
+    const fn = 'getStreamAggregatedDiscount';
+
+    it('should return cashback already received out of the stream', async () => {
+      const count = new BN('0');
+      const Expected = new BN('4000000000000000');
+      const Received = await stackit[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getAmountLeftInVault', () => {
+    const fn = 'getAmountLeftInVault';
+
+    it('should return remaining amount to be swapped in the stream', async () => {
+      const count = new BN('0');
+      const Expected = new BN('41077725336903852569');
+      const Received = await stackit[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getAllStreams', () => {
+    const fn = 'getAllStreams';
+
+    it('should return all active and inactive streamId', async () => {
+      const Expected = [new BN('0')];
+      const Received = await stackit[fn]();
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getAssetsAggregate', () => {
+    const fn = 'getAssetsAggregate';
+
+    it('should return assets addresses in the basket', async () => {
+      const count = new BN('1');
+      const Expected = ['0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270', '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619'];
+      const Received = await stackit[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('fetchAllActiveStreams', () => {
+    const fn = 'fetchAllActiveStreams';
+
+    it('should return all active streamId', async () => {
+      const Expected = [new BN('0')];
+      const Received = await stackit[fn]();
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('activate', () => {
+    const fn = 'activate';
+
+    it('should return tx payload', () => {
+      const Expected = {
+        'data': '0xd4cdfb5a000000000000000000000000000000000000000000000000000000000000007b00000000000000000000000000000000000000000000000000000000000001c80000000000000000000000008f3cf7ad23cd3cadbd9735aff958023239c6a0630000000000000000000000001bfd67037b42cf73acf2047067bd4f2c47d9bfd6000000000000000000000000000000000000000000000000000000000000000700000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000009',
+        'gas': '0x1e8480',
+        'to': '0xceB5AB48b0E4DE27d24D30FBd934eb7D7049F213',
+        'value': '0x0',
+      };
+      const Received = stackit[fn](new BN('123'), new BN('456'), Addresses[Assets.DAI][Chains.polygon], Addresses[Assets.BTC][Chains.polygon], new BN('7'), new BN('8'), [new BN('9')], new BN('0'));
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getListOfStreams', () => {
+    const fn = 'getListOfStreams';
+
+    it('should return active or inactive streams for given user address', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = [new BN('0')];
+      const Received = await stackit[fn](user);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getStreamBasketOfAssets', () => {
+    const fn = 'getStreamBasketOfAssets';
+
+    it('should return basketId', async () => {
+      const count = new BN('0');
+      const Expected = new BN('1');
+      const Received = await stackit[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getStreamRepartition', () => {
+    const fn = 'getStreamRepartition';
+
+    it('should return percent per asset', async () => {
+      const count = new BN('0');
+      const assetId = new BN('0');
+      const Expected = new BN('50');
+      const Received = await stackit[fn](count, assetId);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getStreamStats', () => {
+    const fn = 'getStreamStats';
+
+    it('should return partial stream info (IUserInfo)', async () => {
+      const index = new BN('0');
+      const Expected = {
+        '0': '1200000000000000000',
+        '1': '20000000000000000000',
+        '2': '60000000000000000000',
+        '3': '19755541844468260059',
+        '4': '0',
+        '5': '23352376785',
+        'amount': '20000000000000000000',
+        'buyWithSwapped': '19755541844468260059',
+        'feesPaid': '1200000000000000000',
+        'shares': '23352376785',
+        'toBuyReceived': '0',
+        'totalAmount': '60000000000000000000',
+      };
+      const Received = await stackit[fn](index);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getStreamDetails', () => {
+    const fn = 'getStreamDetails';
+
+    it('should return partial stream info (IUserDetails)', async () => {
+      const index = new BN('0');
+      const Expected = {
+        '0': '0',
+        '1': '1660991426',
+        '2': '1660991568',
+        '3': '1',
+        '4': '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+        '5': '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
+        '6': '2',
+        'buyWith': '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+        'interval': '0',
+        'isactive': '1',
+        'iteration': '2',
+        'lastSwap': '1660991568',
+        'startTime': '1660991426',
+        'toBuy': '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
+      };
+      const Received = await stackit[fn](index);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getStreamInfo', () => {
+    const fn = 'getStreamInfo';
+
+    it('should return stream info', async () => {
+      const index = new BN('0');
+      const Expected = {
+        '0': '0',
+        '1': '1660991426',
+        '2': '1660991568',
+        '3': '1',
+        '4': '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+        '5': '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
+        '6': '2',
+        'amount': '20000000000000000000',
+        'buyWith': '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
+        'buyWithSwapped': '19755541844468260059',
+        'feesPaid': '1200000000000000000',
+        'interval': '0',
+        'isactive': '1',
+        'iteration': '2',
+        'lastSwap': '1660991568',
+        'shares': '23352376785',
+        'startTime': '1660991426',
+        'toBuy': '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6',
+        'toBuyReceived': '0',
+        'totalAmount': '60000000000000000000',
+      };
+      const Received = await stackit[fn](index);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('isMultipleStream', () => {
+    const fn = 'isMultipleStream';
+
+    it('should return wether stream is multi or not', async () => {
+      const count = new BN('0');
+      const Expected = true;
+      const Received = await stackit[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('stop', () => {
+    const fn = 'stop';
+
+    it('should return tx payload', () => {
+      const count = new BN('0');
+      const Expected = {
+        'data': '0x6299f8cf0000000000000000000000000000000000000000000000000000000000000000',
+        'gas': '3000000',
+        'to': '0x266F9733C661639E37CB758013a1e6aE2052e8F5',
+        'value': '0',
+      };
+      const Received = stackit[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('start', () => {
+    const fn = 'start';
+
+    it('should return tx payload', () => {
+      const count = new BN('0');
+      const Expected = {
+        'data': '0x95805dad0000000000000000000000000000000000000000000000000000000000000000',
+        'gas': '3000000',
+        'to': '0x266F9733C661639E37CB758013a1e6aE2052e8F5',
+        'value': '0',
+      };
+      const Received = stackit[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('editIntervals', () => {
+    const fn = 'editIntervals';
+
+    it('should return tx payload', () => {
+      const count = new BN('0');
+      const interval = new BN('0');
+      const Expected = {
+        'data': '0x5164f74f00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+        'gas': '3000000',
+        'to': '0x266F9733C661639E37CB758013a1e6aE2052e8F5',
+        'value': '0',
+      };
+      const Received = stackit[fn](count, interval);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('topUp', () => {
+    const fn = 'topUp';
+
+    it('should return tx payload', () => {
+      const count = new BN('0');
+      const amount = new BN('0');
+      const Expected = {
+        'data': '0xde643a7100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+        'gas': '3000000',
+        'to': '0x266F9733C661639E37CB758013a1e6aE2052e8F5',
+        'value': '0',
+      };
+      const Received = stackit[fn](count, amount);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('withdrawAsset', () => {
+    const fn = 'withdrawAsset';
+
+    it('should return tx payload', () => {
+      const count = new BN('0');
+      const amount = new BN('0');
+      const Expected = {
+        'data': '0xfcc8cd7c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+        'gas': '3000000',
+        'to': '0x266F9733C661639E37CB758013a1e6aE2052e8F5',
+        'value': '0',
+      };
+      const Received = stackit[fn](count, amount);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('check_time', () => {
+    const fn = 'check_time';
+
+    it('should return remaining time in seconds', async () => {
+      const count = new BN('0');
+      const Expected = new BN('0');
+      const Received = await stackit[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+});

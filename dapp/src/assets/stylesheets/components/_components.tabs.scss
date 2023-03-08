@@ -1,0 +1,41 @@
+/* #COMPONENTS - TABS
+		1. Tabs default
+*/
+
+// 1. Tabs default
+.tabs {
+	margin-bottom: $PX_20;
+}
+.tabs__nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: $PX_20;
+}
+.tabs__nav li {
+	transition: $TRANSITION_ALL;
+	font-family: $FONT_MEDIUM;
+	cursor: pointer;
+	width: calc(100% / 4 - $PX_30);
+	margin-right: $PX_10;
+	text-align: center;
+	border: $PX_1 solid $GREY_20;
+	color: $GREY_40;
+	padding: $PX_5 $PX_25;
+	border-radius: $BORDER_RADIUS_4;
+}
+.tabs__nav li:last-child {
+	margin-right: 0;
+}
+.tabs__nav li:hover {
+	background-color: $GREY_10;
+}
+.tabs__nav li.is-active {
+	border: $PX_1 solid $GREY_100;
+	color: $GREY_100;
+}
+.tabs__body p {
+	font-family: $FONT_MEDIUM;
+	margin-bottom: $PX_7;
+}

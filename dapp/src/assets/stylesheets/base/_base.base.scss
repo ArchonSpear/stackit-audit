@@ -1,0 +1,43 @@
+/* #BASE - BASE */
+html {
+	@include font-smoothing(antialiased);
+	font-family: $FONT_MEDIUM;
+	font-weight: 400;
+}
+body {
+	background: $WHITE;
+	text-rendering: optimizeLegibility;
+	line-height: 1.75;
+}
+body.is-fixed {
+	overflow: hidden;
+}
+input,
+input::placeholder {
+	font-family: $FONT_MEDIUM !important;
+}
+input::placeholder {
+	color: $GREY_60;
+}
+input {
+	transition: $TRANSITION_ALL;
+	border: $PX_1 solid $TRANSPARENT;
+	border-radius: $BORDER_RADIUS_4;
+	background-color: $GREY_10;
+	padding: $PX_10;
+	appearance: none;
+	outline: 0;
+	width: 100%;
+	box-sizing: border-box;
+}
+input:focus {
+	border: $PX_1 solid $GREY_40;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	appearance: none;
+}
+strong {
+	font-family: $FONT_BOLD;
+	font-weight: normal !important;
+}

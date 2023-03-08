@@ -1,0 +1,125 @@
+/* #COMPONENTS - CARD
+		1. Card default
+		2. Card invest
+		3. Card position
+		4. Card content
+*/
+
+// 1. Card default
+.card {
+	display: flex;
+	flex-direction: column;
+	border-radius: $BORDER_RADIUS_8;
+	padding: $PX_16;
+	background-color: $GREY_LIGHT;
+}
+.card h4 {
+	font-size: $PX_16;
+	font-family: $FONT_MEDIUM;
+}
+.card h5 {
+	color: $GREY_40;
+	font-size: $PX_12;
+	margin-bottom: $PX_4;
+	line-height: $PX_12;
+}
+.card__header,
+.card__body,
+.card__wrapper,
+.card__wrapper--image,
+.card__footer,
+.card__status {
+	display: flex;
+	flex-direction: row;
+}
+.card__header {
+	margin-bottom: $PX_16;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: $PX_10;
+}
+.card__title {
+	margin-left: $PX_16;
+}
+.card__title h4,
+.card__status h4 {
+	text-transform: capitalize;
+}
+.card__wrapper,
+.card__wrapper--image,
+.card__status {
+	align-items: center;
+}
+.card__wrapper--image {
+	position: relative;
+}
+.card__image {
+	border-radius: 50%;
+}
+.card__image:first-child {
+	height: $PX_36;
+	width: $PX_36;
+}
+.card__image:last-child {
+	height: $PX_20;
+	width: $PX_20;
+	position: absolute;
+	bottom: -$PX_10;
+	right: -$PX_10;
+}
+
+// 2. Card invest
+.card--invest {
+	transition: $TRANSITION_ALL;
+}
+.card--invest:hover {
+	box-shadow: $BOX_SHADOW;
+}
+.card--invest .card__body {
+	justify-content: space-between;
+}
+.card--invest .card__value {
+	padding-left: $PX_52;
+}
+
+// 3. Card positions
+.card--position .card__header {
+	margin-bottom: $PX_26;
+	flex-direction: row;
+}
+.card--position .card__body {
+	flex-wrap: wrap;
+	border-bottom: $PX_1 solid $GREY_20;
+	margin-bottom: $PX_12;
+	padding-left: $PX_56;
+}
+.card--position .card__title {
+	margin-left: $PX_20;
+}
+.card--position .card__value {
+	width: calc(100% / 2);
+}
+.card--position .card__value:nth-child(1),
+.card--position .card__value:nth-child(2),
+.card--position .card__value:nth-child(3) {
+	margin-bottom: $PX_10;
+}
+.card--position .card__value:nth-child(4),
+.card--position .card__value:nth-child(5) {
+	margin-bottom: $PX_12;
+}
+.card--position .card__footer {
+	justify-content: space-between;
+	gap: $PX_16;
+}
+
+// 4. Card content
+.card--content p {
+	font-family: $FONT_MEDIUM;
+	font-size: $PX_14;
+	color: $GREY_40;
+}
+.coming-soon {
+	color: $GREY_100 !important;
+	margin-bottom: 0;
+}
