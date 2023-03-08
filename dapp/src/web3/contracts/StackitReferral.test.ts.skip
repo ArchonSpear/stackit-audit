@@ -1,0 +1,621 @@
+//-----------------------------------------------------------------------------------------------//
+import { StackitReferral } from "./Referral";
+import { Chains } from "../constants/chains";
+import { BN } from "../types/bn";
+import { Addresses } from '../constants/addresses';
+import { Assets } from '../constants/assets';
+
+
+//-----------------------------------------------------------------------------------------------//
+describe.skip('Referral', () => {
+  const referral = new StackitReferral(Chains.polygon);
+
+  beforeAll(() => {
+    jest.setTimeout(60000)
+  });
+
+
+  /***********************************************************************************************\
+   *  Variables
+  \***********************************************************************************************/
+
+  describe('Stackit', () => {
+    const fn = 'Stackit';
+
+    it('should return Stackit', async () => {
+      const Expected = '0x5D2b97d46e7ed207d022F4f72945a260e987e40F';
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('StackitSharedStream', () => {
+    const fn = 'StackitSharedStream';
+
+    it('should return StackitSharedStream', async () => {
+      const Expected = "0x322Fcf8fb056923E23Ce7329f6042a1b54e06e11";
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('maxDiscountStep', () => {
+    const fn = 'maxDiscountStep';
+
+    it('should return maxDiscountStep', async () => {
+      const Expected = new BN('1000000000000000000000000');
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('maxDiscount', () => {
+    const fn = 'maxDiscount';
+
+    it('should return maxDiscount', async () => {
+      const Expected = new BN('10');
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('maxReferralStep', () => {
+    const fn = 'maxReferralStep';
+
+    it('should return maxReferralStep', async () => {
+      const Expected = new BN('1000000000000000000000000');
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('maxReferral', () => {
+    const fn = 'maxReferral';
+
+    it('should return maxReferral', async () => {
+      const Expected = new BN('40');
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('adminReferralLink', () => {
+    const fn = 'adminReferralLink';
+
+    it('should return adminReferralLink', async () => {
+      const Expected = new BN('0');
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('DIADaptor', () => {
+    const fn = 'DIADaptor';
+
+    it('should return DIADaptor', async () => {
+      const Expected = "0xE0c39773d513111DddF2AB1245B28E0b8cCE37B0";
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('tester', () => {
+    const fn = 'tester';
+
+    it('should return tester', async () => {
+      const Expected = new BN('0');
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('vala', () => {
+    const fn = 'vala';
+
+    it('should return vala', async () => {
+      const Expected = new BN('0');
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('valb', () => {
+    const fn = 'valb';
+
+    it('should return valb', async () => {
+      const Expected = new BN('0');
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('valc', () => {
+    const fn = 'valc';
+
+    it('should return valc', async () => {
+      const Expected = new BN('0');
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('discountArray', () => {
+    const fn = 'discountArray';
+
+    it('should return discountArray', async () => {
+      const Expected = new BN('0');
+      const Received = await referral[fn]('0');
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('referralArray', () => {
+    const fn = 'referralArray';
+
+    it('should return referralArray', async () => {
+      const Expected = new BN('0');
+      const Received = await referral[fn]('0');
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  /***********************************************************************************************\
+   *  Mappings
+  \***********************************************************************************************/
+
+  describe('userReferralList', () => {
+    const fn = 'userReferralList';
+
+    it('should return userReferralList', async () => {
+      try {
+        const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+        const blockNumber = 0;
+        const Expected = [] as BN[];
+        const Received = await referral[fn](user, blockNumber);
+        expect(Received).toEqual(Expected);
+      } catch (error) {
+        expect(error).toEqual('unknown error');
+      }
+    })
+  })
+
+
+  describe('userReferralLink', () => {
+    const fn = 'userReferralLink';
+
+    it('should return userReferralLink', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861'
+      const Expected = new BN('33345329');
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('userReferralStatus', () => {
+    const fn = 'userReferralStatus';
+
+    it('should return userReferralStatus', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861'
+      const Expected = true;
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('referralLinkSecurity', () => {
+    const fn = 'referralLinkSecurity';
+
+    it('should return referralLinkSecurity', async () => {
+      const blockNumber = 0;
+      const Expected = "0x0000000000000000000000000000000000000000";
+      const Received = await referral[fn](blockNumber);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('userReferredFrom', () => {
+    const fn = 'userReferredFrom';
+
+    it('should return userReferredFrom', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861'
+      const Expected = new BN('33345329');
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('assetMultiplier', () => {
+    const fn = 'assetMultiplier';
+
+    it('should return assetMultiplier', async () => {
+      const asset = Addresses[Assets.DAI][Chains.polygon];
+      const Expected = new BN('1');
+      const Received = await referral[fn](asset);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('isWhitelisted', () => {
+    const fn = 'isWhitelisted';
+
+    it('should return isWhitelisted', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861'
+      const Expected = false;
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('discountPercentOnReferralCount', () => {
+    const fn = 'discountPercentOnReferralCount';
+
+    it('should return discountPercentOnReferralCount', async () => {
+      const streamId = 0;
+      const Expected = new BN('2');
+      const Received = await referral[fn](streamId);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('referralPercentOnReferralCount', () => {
+    const fn = 'referralPercentOnReferralCount';
+
+    it('should return referralPercentOnReferralCount', async () => {
+      const streamId = 0;
+      const Expected = new BN('1');
+      const Received = await referral[fn](streamId);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('whitelistedDiscount', () => {
+    const fn = 'whitelistedDiscount';
+
+    it('should return whitelistedDiscount', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861'
+      const Expected = new BN('0');
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('whitelistedReferralFees', () => {
+    const fn = 'whitelistedReferralFees';
+
+    it('should return whitelistedReferralFees', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861'
+      const Expected = new BN('0');
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('canChangeReferralLink', () => {
+    const fn = 'canChangeReferralLink';
+
+    it('should return canChangeReferralLink', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861'
+      const Expected = false;
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('userInSharedStream', () => {
+    const fn = 'userInSharedStream';
+
+    it('should return userInSharedStream', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861'
+      const Expected = false;
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  /***********************************************************************************************\
+   *  View Functions
+  \***********************************************************************************************/
+
+  describe('retVals', () => {
+    const fn = 'retVals';
+
+    it('should return vals', async () => {
+      const Expected = new Array(3).fill(new BN('0'));
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getAmountLeft', () => {
+    const fn = 'getAmountLeft';
+
+    it('should return left amount', async () => {
+      const count = new BN('0');
+      const Expected = {
+        amountLeft: new BN('10297888'),
+        collateralPrice: new BN('1000000'),
+        value: new BN('10297888000000000000'),
+        toBuyReceived: new BN('43961'),
+        receivedPrice: new BN('20000000000000000000000'),
+        tokensValue: new BN('879220000000000000000000000000000'),
+      };
+      const Received = await referral[fn](count);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getUserTVL', () => {
+    const fn = 'getUserTVL';
+
+    it('should return user TVL', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = new BN('559904098029014615123');
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getUserSharedStreamTVL', () => {
+    const fn = 'getUserSharedStreamTVL';
+
+    it('should return user shared stream TVL', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = new BN('0');
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('isWhitelistedAddress', () => {
+    const fn = 'isWhitelistedAddress';
+
+    it('should return boolean', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = false;
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getWasReferredFrom', () => {
+    const fn = 'getWasReferredFrom';
+
+    it('should return address', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getDiscountForStep', () => {
+    const fn = 'getDiscountForStep';
+
+    it('should return discount for step', async () => {
+      const step = new BN('0');
+      const Expected = new BN('2');
+      const Received = await referral[fn](step);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getuserReferralList', () => {
+    const fn = 'getuserReferralList';
+
+    it('should return user referral list', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = [] as BN[];
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getuserCount', () => {
+    const fn = 'getuserCount';
+
+    it('should return user count', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = new BN('0');
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('isUserAbleToChangeLink', () => {
+    const fn = 'isUserAbleToChangeLink';
+
+    it('should return true if user is able to change link', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = false;
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('isUserSignedUp', () => {
+    const fn = 'isUserSignedUp';
+
+    it('should return true if user signed up', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = true;
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getMaxDiscountStep', () => {
+    const fn = 'getMaxDiscountStep';
+
+    it('should return max discount step', async () => {
+      const Expected = new BN('1000000000000000000000000');
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getMaxDiscount', () => {
+    const fn = 'getMaxDiscount';
+
+    it('should return max discount', async () => {
+      const Expected = new BN('10');
+      const Received = await referral[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getUserReferralLink', () => {
+    const fn = 'getUserReferralLink';
+
+    it('should return user referral link', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = new BN('33345329');
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getCollateralPrice', () => {
+    const fn = 'getCollateralPrice';
+
+    it('should return collateral price', async () => {
+      const token = '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619';
+      const Expected = new BN('1600000000000000000000');
+      const Received = await referral[fn](token);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getUserReferralDiscount', () => {
+    const fn = 'getUserReferralDiscount';
+
+    it('should return user referral discount', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = new BN('2');
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getUserReferralFees', () => {
+    const fn = 'getUserReferralFees';
+
+    it('should return user referral fees', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = new BN('1');
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('isInSharedStream', () => {
+    const fn = 'isInSharedStream';
+
+    it('should return true user is in shared stream', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = false;
+      const Received = await referral[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  /***********************************************************************************************\
+   *  Write Functions
+  \***********************************************************************************************/
+
+  describe.skip('changeReferralLink', () => {
+    const fn = 'changeReferralLink';
+
+    it('should return tx payload', async () => { // FIX ME
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const referralLink = '33347520';
+      const Expected = {
+        'data': '0xd4cdfb5a000000000000000000000000000000000000000000000000000000000000007b00000000000000000000000000000000000000000000000000000000000001c80000000000000000000000008f3cf7ad23cd3cadbd9735aff958023239c6a0630000000000000000000000001bfd67037b42cf73acf2047067bd4f2c47d9bfd6000000000000000000000000000000000000000000000000000000000000000700000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000009',
+        'gas': '0x1e8480',
+        'to': '0xceB5AB48b0E4DE27d24D30FBd934eb7D7049F213',
+        'value': '0x0',
+      };
+      const Received = await referral[fn](user, referralLink);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+
+  describe('signUp', () => {
+    const fn = 'signUp';
+
+    it('should return tx payload', async () => {
+      const user = '0x733e72FD6b258e96ABF8AE4F592cE281D52d93f9';
+      const blockNumber = '33347520';
+      const Expected = {
+        'data': '0xcb9429b5000000000000000000000000733e72fd6b258e96abf8ae4f592ce281d52d93f9',
+        'gas': '0x210dd',
+        'to': '0xe2ADE1BdbFe19d80b2Efed045D2c39215505677E',
+        'value': '0x0',
+      };
+      const Received = await referral[fn](user, blockNumber);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+
+  describe.skip('signUpWithReferral', () => {
+    const fn = 'signUpWithReferral';
+
+    it('should return tx payload', async () => { // FIX ME
+      const user = '0x733e72FD6b258e96ABF8AE4F592cE281D52d93f9';
+      const referralLink = '33347520';
+      const Expected = {
+        'data': '0xd4cdfb5a000000000000000000000000000000000000000000000000000000000000007b00000000000000000000000000000000000000000000000000000000000001c80000000000000000000000008f3cf7ad23cd3cadbd9735aff958023239c6a0630000000000000000000000001bfd67037b42cf73acf2047067bd4f2c47d9bfd6000000000000000000000000000000000000000000000000000000000000000700000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000009',
+        'gas': '0x1e8480',
+        'to': '0xceB5AB48b0E4DE27d24D30FBd934eb7D7049F213',
+        'value': '0x0',
+      };
+      const Received = await referral[fn](user, referralLink);
+      expect(Received).toEqual(Expected);
+    });
+  });
+})

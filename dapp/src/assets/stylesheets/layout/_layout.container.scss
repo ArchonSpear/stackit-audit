@@ -1,0 +1,19 @@
+/* #LAYOUT - CONTAINER
+		1. Container default
+    2. Container sizes
+*/
+
+// 1. Container default
+.l-container {
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 $PX_15;
+}
+
+// 2. Container sizes
+.l-container--md {
+	max-width: $PX_1200;
+}
+.l-container--sm {
+	max-width: $PX_880;
+}

@@ -1,0 +1,29 @@
+/* #COMPONENTS - SLIDING PANE
+		1. Sliding pane default
+*/
+
+// 1. Sliding pane default
+.slide-pane__overlay {
+	z-index: 1;
+	background-color: rgba(0, 0, 0, 0) !important;
+}
+.slide-pane__close {
+	margin-left: 0 !important;
+	opacity: 1 !important;
+	padding: $PX_12 $PX_24 !important;
+	height: $PX_20 !important;
+}
+.slide-pane__header {
+	flex: 0 !important;
+	height: auto !important;
+}
+.slide-pane__title-wrapper {
+	margin-left: 0 !important;
+}
+.slide-pane__overlay.overlay-after-open,
+.slide-pane__overlay {
+	transition: $TRANSITION_ALL !important;
+}
+.slide-pane__overlay.overlay-after-open {
+	background-color: rgba(0, 0, 0, 0.85) !important;
+}

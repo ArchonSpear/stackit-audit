@@ -1,0 +1,526 @@
+//-----------------------------------------------------------------------------------------------//
+import { Chains } from "../constants/chains";
+import { Errors } from '../constants/errors';
+import { address } from "../types/address";
+import { BN } from "../types/bn";
+import { PooledClaimer } from "./PooledClaimer";
+import { Addresses } from "../constants/addresses";
+import { Assets } from "../constants/assets";
+
+
+//-----------------------------------------------------------------------------------------------//
+describe.skip('PooledClaimer', () => {
+  const pooledClaimer = new PooledClaimer(Chains.polygon)
+
+  beforeAll(() => {
+    jest.setTimeout(60000)
+  });
+
+
+  /***********************************************************************************************\
+   *  Variables
+  \***********************************************************************************************/
+
+  describe('Stackit', () => {
+    const fn = 'Stackit';
+
+    it('should return Stackit', async () => {
+      const Expected = '0x0000000000000000000000000000000000000000';
+      const Received = await pooledClaimer[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('vala', () => {
+    const fn = 'vala';
+
+    it('should return vala', async () => {
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('valb', () => {
+    const fn = 'valb';
+
+    it('should return valb', async () => {
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('valc', () => {
+    const fn = 'valc';
+
+    it('should return valc', async () => {
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('vald', () => {
+    const fn = 'vald';
+
+    it('should return vald', async () => {
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('vale', () => {
+    const fn = 'vale';
+
+    it('should return vale', async () => {
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('valf', () => {
+    const fn = 'valf';
+
+    it('should return valf', async () => {
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('valg', () => {
+    const fn = 'valg';
+
+    it('should return valg', async () => {
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('tester', () => {
+    const fn = 'tester';
+
+    it('should return tester', async () => {
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  /***********************************************************************************************\
+   *  Mappings
+  \***********************************************************************************************/
+
+  describe('userAmountPerBuy', () => {
+    const fn = 'userAmountPerBuy';
+
+    it('should return userAmountPerBuy', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const streamId = 0;
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn](user, streamId);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('userSequences', () => {
+    const fn = 'userSequences';
+
+    it('should return userSequences', async () => {
+      try {
+        const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+        const streamId = 0;
+        const Expected = new BN('0');
+        const Received = await pooledClaimer[fn](user, streamId);
+        expect(Received).toEqual(Expected);
+      } catch (error) {
+        expect(error).toEqual('unknown error');
+      }
+    })
+  })
+
+
+  describe('userSequencesMultiple', () => {
+    const fn = 'userSequencesMultiple';
+
+    it('should return userSequencesMultiple', async () => {
+      try {
+        const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+        const streamId = 0;
+        const Expected = new BN('0');
+        const Received = await pooledClaimer[fn](user, streamId);
+        expect(Received).toEqual(Expected);
+      } catch (error) {
+        expect(error).toEqual('unknown error');
+      }
+    })
+  })
+
+
+  describe('userSequenceExist', () => {
+    const fn = 'userSequenceExist';
+
+    it('should return userSequenceExist', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const streamId = 0;
+      const Expected = false;
+      const Received = await pooledClaimer[fn](user, streamId);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('userSequenceExistMultiple', () => {
+    const fn = 'userSequenceExistMultiple';
+
+    it('should return userSequenceExistMultiple', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const streamId = 0;
+      const Expected = false;
+      const Received = await pooledClaimer[fn](user, streamId);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('feesPerAssets', () => {
+    const fn = 'feesPerAssets';
+
+    it('should return feesPerAssets', async () => {
+      const asset = Addresses[Assets.DAI][Chains.polygon];
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn](asset);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('boughtAmountsPerEpochs', () => {
+    const fn = 'boughtAmountsPerEpochs';
+
+    it('should return boughtAmountsPerEpochs', async () => {
+      const epoch = 0;
+      const streamId = 0;
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn](epoch, streamId);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('buyAmountsPerEpochs', () => {
+    const fn = 'buyAmountsPerEpochs';
+
+    it('should return buyAmountsPerEpochs', async () => {
+      const epoch = 0;
+      const streamId = 0;
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn](epoch, streamId);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('userLastEpochClaimed', () => {
+    const fn = 'userLastEpochClaimed';
+
+    it('should return userLastEpochClaimed', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const streamId = 0;
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn](user, streamId);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('epochs', () => {
+    const fn = 'epochs';
+
+    it('should return epochs', async () => {
+      const streamId = 0;
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn](streamId);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('boughtAmountsPerEpochsMultiple', () => {
+    const fn = 'boughtAmountsPerEpochsMultiple';
+
+    it('should return boughtAmountsPerEpochsMultiple', async () => {
+      try {
+        const epoch = 0;
+        const streamId = 0;
+        const step = 0;
+        const Expected = [] as BN[];
+        const Received = await pooledClaimer[fn](epoch, streamId, step);
+        expect(Received).toEqual(Expected);
+      } catch (error) {
+        expect(error).toEqual('unknown error');
+      }
+    })
+  })
+
+
+  describe('buyAmountsPerEpochsMultiple', () => {
+    const fn = 'buyAmountsPerEpochsMultiple';
+
+    it('should return buyAmountsPerEpochsMultiple', async () => {
+      try {
+        const streamId = 0;
+        const epoch = 0;
+        const index = 0;
+        const Expected = new BN('0');
+        const Received = await pooledClaimer[fn](streamId, epoch, index);
+        expect(Received).toEqual(Expected);
+      } catch (error) {
+        expect(error).toEqual('unknown error');
+      }
+    })
+  })
+
+
+  describe('userLastEpochClaimedMultiple', () => {
+    const fn = 'userLastEpochClaimedMultiple';
+
+    it('should return userIteration', async () => {
+      try {
+        const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+        const streamId = 0;
+        const Expected = new BN('0');
+        const Received = await pooledClaimer[fn](user, streamId);
+        expect(Received).toEqual(Expected);
+      } catch (error) {
+        expect(error).toEqual('unknown error');
+      }
+    })
+  })
+
+
+  /***********************************************************************************************\
+   *  View Functions
+  \***********************************************************************************************/
+
+  describe('retVals', () => {
+    const fn = 'retVals';
+
+    it('should return vals', async () => {
+      const Expected = new Array(7).fill(new BN('0'));
+      const Received = await pooledClaimer[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getAssetForCount', () => {
+    const fn = 'getAssetForCount';
+
+    it('should return asset for given count', async () => {
+      try {
+        const count = new BN('0');
+        const Expected = '';
+        const Received = await pooledClaimer[fn](count);
+        expect(Received).toEqual(Expected);
+      } catch (error) {
+        expect(error).toEqual(Errors['PooledClaimer.getAssetForCount.NoStreamFound']);
+      }
+    })
+  })
+
+
+  describe('getAssetsForCount', () => {
+    const fn = 'getAssetsForCount';
+
+    it('should return assets for given count', async () => {
+      try {
+        const count = new BN('0');
+        const Expected: address[] = [];
+        const Received = await pooledClaimer[fn](count);
+        expect(Received).toEqual(Expected);
+      } catch (error) {
+        expect(error).toEqual(Errors['PooledClaimer.getAssetsForCount.NoStreamFound']);
+      }
+    })
+  })
+
+
+  describe('getBoughtAmountForEpoch', () => {
+    const fn = 'getBoughtAmountForEpoch';
+
+    it('should return bought amount for epoch', async () => {
+      const count = new BN('0');
+      const epoch = new BN('0')
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn](count, epoch);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getBuyAmountForEpoch', () => {
+    const fn = 'getBuyAmountForEpoch';
+
+    it('should return buy amount for given epoch', async () => {
+      const count = new BN('0');
+      const epoch = new BN('0');
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn](count, epoch);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('getSequenceEpoch', () => {
+    const fn = 'getSequenceEpoch';
+
+    it('should return sequence epoch', async () => {
+      const count = new BN('0');
+      const Expected = new BN('0');
+      const Received = await pooledClaimer[fn](count);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  /***********************************************************************************************\
+   *  Write Functions
+  \***********************************************************************************************/
+
+  describe('addAssetForUser', () => {
+    const fn = 'addAssetForUser';
+
+    it('should return tx payload', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const streamId = 0;
+      const amountPerBuy = 0;
+      const iteration = 0;
+      const isMultiple = false;
+      const Expected = {
+        'data': '0x518f07b10000000000000000000000001f8a6a5cabd68b528a8e3f44e2a1d20a49fc88610000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+        'gas': '0x13c93',
+        'to': '0xEBCb573A9DfDed490DdFdb8e61556EB3Bb3E2788',
+        'value': '0x0',
+      };
+      const Received = await pooledClaimer[fn](
+        user,
+        streamId,
+        amountPerBuy,
+        iteration,
+        isMultiple,
+      );
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+
+  describe('addAmounts', () => {
+    const fn = 'addAmounts';
+
+    it('should return tx payload', async () => {
+      const amount = 0;
+      const streamId = 0;
+      const amountPerBuy = 0;
+      const Expected = {
+        'data': '0x076712bd000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+        'gas': '0x2dc6c0',
+        'to': '0xEBCb573A9DfDed490DdFdb8e61556EB3Bb3E2788',
+        'value': '0x0',
+      };
+      const Received = await pooledClaimer[fn](
+        amount,
+        streamId,
+        amountPerBuy,
+      );
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+
+  describe('addAmountsMultiple', () => {
+    const fn = 'addAmountsMultiple';
+
+    it('should return tx payload', async () => {
+      const amount = [0];
+      const streamId = 0;
+      const amountPerBuy = [0];
+      const asset = [Addresses[Assets.DAI][Chains.polygon]];
+      const Expected = {
+        'data': '0xc91a1c8f0000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000008f3cf7ad23cd3cadbd9735aff958023239c6a063',
+        'gas': '0x2dc6c0',
+        'to': '0xEBCb573A9DfDed490DdFdb8e61556EB3Bb3E2788',
+        'value': '0x0',
+      };
+      const Received = await pooledClaimer[fn](
+        amount,
+        streamId,
+        amountPerBuy,
+        asset,
+      );
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+
+  describe('claimAmounts', () => {
+    const fn = 'claimAmounts';
+
+    it('should return tx payload', async () => {
+      const Expected = {
+        'data': '0xc6b384f3',
+        'gas': '0x5db1',
+        'to': '0xEBCb573A9DfDed490DdFdb8e61556EB3Bb3E2788',
+        'value': '0x0',
+      };
+      const Received = await pooledClaimer[fn]();
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+
+  describe('claimAmountsMultiple', () => {
+    const fn = 'claimAmountsMultiple';
+
+    it('should return tx payload', async () => {
+      const Expected = {
+        'data': '0x960b20d2',
+        'gas': '0x8245',
+        'to': '0xEBCb573A9DfDed490DdFdb8e61556EB3Bb3E2788',
+        'value': '0x0',
+      };
+      const Received = await pooledClaimer[fn]();
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+
+  describe('_claimAmountsMultiple', () => {
+    const fn = '_claimAmountsMultiple';
+
+    it('should return tx payload', async () => {
+      const Expected = {
+        'data': '0xd6e022f8',
+        'gas': '0x834d',
+        'to': '0xEBCb573A9DfDed490DdFdb8e61556EB3Bb3E2788',
+        'value': '0x0',
+      };
+      const Received = await pooledClaimer[fn]();
+      expect(Received).toEqual(Expected);
+    });
+  });
+})

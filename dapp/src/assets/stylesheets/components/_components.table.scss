@@ -1,0 +1,83 @@
+/* #COMPONENTS - TABLE
+		1. Table default
+		2. Table invest
+*/
+
+// 1. Table default
+.table,
+.table__row {
+	display: flex;
+}
+.table {
+	font-family: $FONT_MEDIUM;
+	flex-direction: column;
+}
+.table__row {
+	flex-direction: row;
+	justify-content: space-between;
+	padding: $PX_20 $PX_16;
+}
+.table__row--header {
+	background-color: $GREY_10;
+	color: $GREY_60;
+	font-size: $PX_15;
+	border-radius: $BORDER_RADIUS_8;
+	padding: $PX_12 $PX_16;
+}
+.table__cell:nth-child(1) {
+	width: 20%;
+}
+.table__cell:nth-child(2) {
+	width: 20%;
+}
+.table__cell:nth-child(3) {
+	width: 40%;
+}
+.table__cell:nth-child(4) {
+	width: 20%;
+}
+
+// 2. Table invest
+.table--invest .table__row--header .table__cell:nth-child(1),
+.table--invest .table__row--header .table__cell:nth-child(2) {
+	position: relative;
+	cursor: pointer;
+}
+.table--invest .table__row--header .table__cell:nth-child(1):before,
+.table--invest .table__row--header .table__cell:nth-child(2):before {
+	content: url("data:image/svg+xml,%3Csvg width='13' height='18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.75 7.197a.718.718 0 0 1-.217.514.746.746 0 0 1-1.044 0L6.375 2.678 1.26 7.71a.746.746 0 0 1-1.044 0 .718.718 0 0 1 0-1.027l5.636-5.547a.746.746 0 0 1 1.044 0l5.637 5.547a.717.717 0 0 1 .216.513ZM0 11.727c0-.186.072-.372.216-.514a.746.746 0 0 1 1.044 0l5.114 5.033 5.115-5.033a.746.746 0 0 1 1.044 0 .718.718 0 0 1 0 1.028l-5.636 5.546a.746.746 0 0 1-1.044 0L.217 12.241A.717.717 0 0 1 0 11.727Z' fill='%23767676'/%3E%3C/svg%3E");
+	position: absolute;
+	top: 50%;
+	left: 80%;
+	transform: translate(0%, -50%);
+	height: $PX_20;
+}
+.table--invest .table__row--header .table__cell.des:nth-child(1):before,
+.table--invest .table__row--header .table__cell.des:nth-child(2):before {
+	content: url("data:image/svg+xml,%3Csvg width='13' height='8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.75 7.197a.718.718 0 0 1-.217.514.746.746 0 0 1-1.044 0L6.375 2.678 1.26 7.71a.746.746 0 0 1-1.044 0 .718.718 0 0 1 0-1.027l5.636-5.547a.746.746 0 0 1 1.044 0l5.637 5.547a.717.717 0 0 1 .216.513Z' fill='%23767676'/%3E%3C/svg%3E");
+}
+.table--invest .table__row--header .table__cell.asc:nth-child(1):before,
+.table--invest .table__row--header .table__cell.asc:nth-child(2):before {
+	content: url("data:image/svg+xml,%3Csvg width='13' height='7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 .727C0 .54.072.355.216.213a.746.746 0 0 1 1.044 0l5.114 5.033L11.49.213a.746.746 0 0 1 1.044 0 .718.718 0 0 1 0 1.028L6.897 6.787a.746.746 0 0 1-1.044 0L.217 1.241A.717.717 0 0 1 0 .727Z' fill='%23767676'/%3E%3C/svg%3E");
+}
+.table--invest .table__row--header .table__cell.des:nth-child(1):before,
+.table--invest .table__row--header .table__cell.des:nth-child(2):before,
+.table--invest .table__row--header .table__cell.asc:nth-child(1):before,
+.table--invest .table__row--header .table__cell.asc:nth-child(2):before {
+	height: $PX_27;
+}
+.table--invest .table__row--header .table__cell:nth-child(3),
+.table--invest .table__row--header .table__cell:nth-child(4) {
+	pointer-events: none;
+}
+.table--invest img {
+	height: $PX_24;
+	width: $PX_24;
+	border-radius: 50%;
+}
+.table--invest .btn {
+	margin-right: $PX_12;
+}
+.table--invest .btn:last-child {
+	margin-right: 0;
+}

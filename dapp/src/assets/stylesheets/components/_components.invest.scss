@@ -1,0 +1,36 @@
+/* #COMPONENTS - INVEST
+		1. Invest default
+*/
+
+// 1. Invest default
+.invest label {
+	font-size: $PX_14;
+	margin-bottom: $PX_8;
+	display: block;
+}
+.invest__product {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: $PX_20;
+}
+.invest__image {
+	margin-right: $PX_12;
+	height: $PX_32;
+	width: $PX_32;
+	border-radius: 50%;
+}
+.invest__title h5 {
+	text-transform: uppercase;
+	color: $GREY_40;
+	font-size: $PX_12;
+	margin-bottom: $PX_4;
+	line-height: $PX_12;
+}
+.invest__title h4 {
+	text-transform: capitalize;
+}
+.invest p {
+	font-size: $PX_14;
+	margin-bottom: $PX_8;
+}

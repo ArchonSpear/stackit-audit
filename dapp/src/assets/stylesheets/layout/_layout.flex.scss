@@ -1,0 +1,41 @@
+/* #LAYOUT - Flex
+		1. Flex default
+    2. Flex row
+    3. Flex column
+		4. Flex responsive
+*/
+
+// 1. Flex default
+.l-flex {
+	display: flex;
+}
+
+// 2. Flex row
+.l-flex--row {
+	flex-direction: row;
+	align-items: center;
+}
+.l-flex--row-space-between {
+	justify-content: space-between;
+}
+.l-flex--row-center-space-between {
+	justify-content: space-between;
+	align-items: center;
+}
+.l-flex--row-justify-center {
+	justify-content: center;
+	align-items: center;
+}
+
+// 3. Flex column
+.l-flex--column {
+	flex-direction: column;
+}
+
+// 4. Flex responsive
+@media screen and (max-width: $PX_990) {
+	.l-flex-responsive--column-start {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}

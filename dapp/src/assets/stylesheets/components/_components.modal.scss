@@ -1,0 +1,42 @@
+/* #COMPONENTS - MODAL
+		1. Modal default
+*/
+
+// 1. Modal default
+.modal__overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: $BLACK_RGBA;
+	z-index: 999;
+	cursor: pointer;
+}
+.modal {
+	background-color: $WHITE;
+	border-radius: $BORDER_RADIUS_8;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 999;
+	max-width: $PX_320;
+}
+.modal__header {
+	border-bottom: $PX_1 solid $GREY_10;
+	padding: $PX_16;
+}
+.modal__header h3 {
+	font-size: $PX_16;
+	line-height: 120%;
+}
+.modal__body {
+	padding: $PX_32 $PX_16;
+}
+.modal__body p {
+	margin-bottom: $PX_32;
+}
+.modal__body a {
+	color: $GREEN;
+}

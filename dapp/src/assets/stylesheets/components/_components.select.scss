@@ -1,0 +1,34 @@
+/* #COMPONENTS - SELECT
+		1. Select default
+*/
+
+// 1. Select default
+.select {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.select label {
+	margin-right: $PX_20;
+}
+.select__input {
+	min-width: $PX_150;
+}
+.select__option {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.select__option img,
+.select__badge {
+	border-radius: 50%;
+	margin-right: $PX_8;
+}
+.select__option img {
+	height: $PX_22;
+	width: $PX_22;
+}
+.select__badge {
+	height: $PX_12;
+	width: $PX_12;
+}

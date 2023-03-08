@@ -1,0 +1,585 @@
+//-----------------------------------------------------------------------------------------------//
+import { Assets } from '../constants/assets';
+import { Chains } from '../constants/chains';
+import { Addresses } from '../constants/addresses';
+import { BN } from '../types/bn';
+import { StackitPooled } from './StackitPooled';
+import { address } from '../types/address';
+
+
+//-----------------------------------------------------------------------------------------------//
+describe.skip('StackitPooled', () => {
+  const stackitPooled = new StackitPooled(Chains.polygon);
+
+  beforeAll(() => {
+    jest.setTimeout(60000);
+  });
+
+
+  /***********************************************************************************************\
+   *  Variables
+  \***********************************************************************************************/
+
+  describe('unirouter', () => {
+    const fn = 'unirouter';
+
+    it('should return unirouter', async () => {
+      const Expected = "0x0000000000000000000000000000000000000000";
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('Referrals', () => {
+    const fn = 'Referrals';
+
+    it('should return Referrals', async () => {
+      const Expected = "0x0000000000000000000000000000000000000000";
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('GasCostOracle', () => {
+    const fn = 'GasCostOracle';
+
+    it('should return GasCostOracle', async () => {
+      const Expected = "0x0000000000000000000000000000000000000000";
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('feeToken', () => {
+    const fn = 'feeToken';
+
+    it('should return feeToken', async () => {
+      const Expected = "0x0000000000000000000000000000000000000000";
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('DIADaptor', () => {
+    const fn = 'DIADaptor';
+
+    it('should return DIADaptor', async () => {
+      const Expected = "0x0000000000000000000000000000000000000000";
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('ReferralFeesAggregator', () => {
+    const fn = 'ReferralFeesAggregator';
+
+    it('should return ReferralFeesAggregator', async () => {
+      const Expected = "0x0000000000000000000000000000000000000000";
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('PooledClaimer', () => {
+    const fn = 'PooledClaimer';
+
+    it('should return PooledClaimer', async () => {
+      const Expected = "0x0000000000000000000000000000000000000000";
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('tester', () => {
+    const fn = 'tester';
+
+    it('should return tester', async () => {
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('trxCostPercentFee', () => {
+    const fn = 'trxCostPercentFee';
+
+    it('should return trxCostPercentFee', async () => {
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('treasuryInboundFees', () => {
+    const fn = 'treasuryInboundFees';
+
+    it('should return treasuryInboundFees', async () => {
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('treasuryOutboundFees', () => {
+    const fn = 'treasuryOutboundFees';
+
+    it('should return treasuryOutboundFees', async () => {
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('buybackFees', () => {
+    const fn = 'buybackFees';
+
+    it('should return buybackFees', async () => {
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('pancakeSwapFees', () => {
+    const fn = 'pancakeSwapFees';
+
+    it('should return pancakeSwapFees', async () => {
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('minimumDeposit', () => {
+    const fn = 'minimumDeposit';
+
+    it('should return minimumDeposit', async () => {
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('allStreams', () => {
+    const fn = 'allStreams';
+
+    it('should return allStreams', async () => {
+      try {
+        const Expected = new BN('0');
+        const Received = await stackitPooled[fn]('0');
+        expect(Received).toEqual(Expected);
+      } catch (error) {
+        expect(error).toEqual('stream not found');
+      }
+    })
+  })
+
+  describe('activeStreams', () => {
+    const fn = 'activeStreams';
+
+    it('should return activeStreams', async () => {
+      try {
+        const Expected = new BN('0');
+        const Received = await stackitPooled[fn]('0');
+        expect(Received).toEqual(Expected);
+      } catch (error) {
+        expect(error).toEqual('stream not found');
+      }
+    })
+  })
+
+
+  /***********************************************************************************************\
+   *  Mappings
+  \***********************************************************************************************/
+
+  describe('list', () => {
+    const fn = 'list';
+
+    it('should return list', async () => {
+      try {
+        const address = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+        const index = 0;
+        const Expected = new BN('0');
+        const Received = await stackitPooled[fn](address, index);
+        expect(Received).toEqual(Expected);
+      } catch (error) {
+        expect(error).toEqual('unknown error');
+      }
+    })
+  })
+
+  describe('streams', () => {
+    const fn = 'streams';
+
+    it('should return streams', async () => {
+      const step = 0;
+      const Expected = {
+        totalAmount: new BN('0'),
+        interval: new BN('0'),
+        startTime: new BN('0'),
+        lastSwap: new BN('0'),
+        isactive: new BN('0'),
+        buyWithSwapped: new BN('0'),
+        toBuyReceived: new BN('0'),
+        route: undefined,
+        buyWith: '0x0000000000000000000000000000000000000000',
+        toBuy: '0x0000000000000000000000000000000000000000',
+        shares: new BN('0'),
+      };
+      const Received = await stackitPooled[fn](step);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('amounts', () => {
+    const fn = 'amounts';
+
+    it('should return amounts', async () => {
+      const step = 0;
+      const Expected = {
+        totalAmount: new BN('0'),
+        interval: new BN('0'),
+        startTime: new BN('0'),
+        lastSwap: new BN('0'),
+        isactive: new BN('0'),
+        buyWithSwapped: new BN('0'),
+        toBuyReceived: new BN('0'),
+        route: '0',
+        buyWith: '0',
+        toBuy: '0',
+        shares: new BN('0'),
+      };
+      const Received = await stackitPooled[fn](step);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('vaults', () => {
+    const fn = 'vaults';
+
+    it('should return vaults', async () => {
+      const vault = '0x4462817b53E76b722c2D174D0148ddb81452f1dE';
+      const Expected = {
+        asset: '0x0000000000000000000000000000000000000000',
+        tokenA: '0x0000000000000000000000000000000000000000',
+        tokenB: '0x0000000000000000000000000000000000000000',
+        vault: '0x0000000000000000000000000000000000000000',
+        want: '0x0000000000000000000000000000000000000000',
+        route: undefined,
+        aggregateRoute: undefined,
+      };
+      const Received = await stackitPooled[fn](vault);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('amountLeftInStream', () => {
+    const fn = 'amountLeftInStream';
+
+    it('should return amountLeftInStream', async () => {
+      const stream = 0;
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn](stream);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('userAggregatedDiscount', () => {
+    const fn = 'userAggregatedDiscount';
+
+    it('should return userAggregatedDiscount', async () => {
+      const stream = 0;
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn](stream);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('minimumAmountPerBuy', () => {
+    const fn = 'minimumAmountPerBuy';
+
+    it('should return minimumAmountPerBuy', async () => {
+      const asset = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn](asset);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('isUserInStream', () => {
+    const fn = 'isUserInStream';
+
+    it('should return isUserInStream', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const stream = 0;
+      const Expected = false;
+      const Received = await stackitPooled[fn](user, stream);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('assetsAggregate', () => {
+    const fn = 'assetsAggregate';
+
+    it('should return assetsAggregate', async () => {
+      try {
+        const backetId = 0;
+        const assetIndex = 0;
+        const Expected = [] as address[];
+        const Received = await stackitPooled[fn](backetId, assetIndex);
+        expect(Received).toEqual(Expected);
+      } catch (error) {
+        expect(error).toEqual('unknown error');
+      }
+    })
+  })
+
+  describe('assetsAggregateExist', () => {
+    const fn = 'assetsAggregateExist';
+
+    it('should return assetsAggregateExist', async () => {
+      const asset = 0;
+      const Expected = false;
+      const Received = await stackitPooled[fn](asset);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('streamNature', () => {
+    const fn = 'streamNature';
+
+    it('should return streamNature', async () => {
+      const stream = 0;
+      const Expected = false;
+      const Received = await stackitPooled[fn](stream);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('streamBasketOfAsset', () => {
+    const fn = 'streamBasketOfAsset';
+
+    it('should return streamBasketOfAsset', async () => {
+      const stream = 0;
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn](stream);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  /***********************************************************************************************\
+   *  View Functions
+  \***********************************************************************************************/
+
+  describe('getListOfStreams', () => {
+    const fn = 'getListOfStreams';
+
+    it('should return active or inactive streams for given user address', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected: any[] = [];
+      const Received = await stackitPooled[fn](user);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('retVals', () => {
+    const fn = 'retVals';
+
+    it('should return valint vala valb valc', async () => {
+      const Expected = new Array(4).fill(new BN('0'));
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('getCollateralPrice', () => {
+    const fn = 'getCollateralPrice';
+
+    it('should return collateral price for given token address', async () => {
+      try {
+        const token = Addresses[Assets.DAI][Chains.polygon];
+        const Expected = new BN('1000000000000000000'); // 1$
+        const Received = await stackitPooled[fn](token);
+        expect(Received).toEqual(Expected);
+      } catch (error) {
+        expect(error).toEqual('unknown error');
+      }
+    });
+  });
+
+  describe('getUserShares', () => {
+    const fn = 'getUserShares';
+
+    it('should return shares for given stream id', async () => {
+      const count = new BN('0');
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getMultipleAmountForStream', () => {
+    const fn = 'getMultipleAmountForStream';
+
+    it('should return amount already swapped out of the stream', async () => {
+      const count = new BN('0');
+      const token = Addresses[Assets.DAI][Chains.polygon];
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn](count, token);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getStreamAggregatedDiscount', () => {
+    const fn = 'getStreamAggregatedDiscount';
+
+    it('should return cashback already received out of the stream', async () => {
+      const count = new BN('0');
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+
+  describe('getAmountLeftInVault', () => {
+    const fn = 'getAmountLeftInVault';
+
+    it('should return remaining amount to be swapped in the stream', async () => {
+      const count = new BN('0');
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getAllStreams', () => {
+    const fn = 'getAllStreams';
+
+    it('should return all active and inactive streamId', async () => {
+      const Expected: any[] = [];
+      const Received = await stackitPooled[fn]();
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getAssetsAggregate', () => {
+    const fn = 'getAssetsAggregate';
+
+    it('should return assets addresses in the basket', async () => {
+      const count = new BN('1');
+      const Expected: any[] = [];
+      const Received = await stackitPooled[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+
+  describe('getStreamBasketOfAssets', () => {
+    const fn = 'getStreamBasketOfAssets';
+
+    it('should return basketId', async () => {
+      const count = new BN('0');
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+
+  describe('getStreamStats', () => {
+    const fn = 'getStreamStats';
+
+    it('should return partial stream info (IUserInfo)', async () => {
+      const index = new BN('0');
+      const Expected = {
+        '0': '0',
+        '1': '0',
+        '2': '0',
+        '3': '0',
+        'buyWithSwapped': '0',
+        'shares': '0',
+        'toBuyReceived': '0',
+        'totalAmount': '0',
+      };
+      const Received = await stackitPooled[fn](index);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getStreamDetails', () => {
+    const fn = 'getStreamDetails';
+
+    it('should return partial stream info (IUserDetails)', async () => {
+      const index = new BN('0');
+      const Expected = {
+        '0': '0',
+        '1': '0',
+        '2': '0',
+        '3': '0',
+        '4': '0x0000000000000000000000000000000000000000',
+        '5': '0x0000000000000000000000000000000000000000',
+        'buyWith': '0x0000000000000000000000000000000000000000',
+        'interval': '0',
+        'isactive': '0',
+        'lastSwap': '0',
+        'startTime': '0',
+        'toBuy': '0x0000000000000000000000000000000000000000',
+      };
+      const Received = await stackitPooled[fn](index);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getUserAmountInStream', () => {
+    const fn = 'getUserAmountInStream';
+
+    it('should return user amount in stream', async () => {
+      const streamId = new BN('0');
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn](streamId, user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+  describe('isMultipleStream', () => {
+    const fn = 'isMultipleStream';
+
+    it('should return wether stream is multi or not', async () => {
+      const count = new BN('0');
+      const Expected = false;
+      const Received = await stackitPooled[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+  describe('getSequence', () => {
+    const fn = 'getSequence';
+
+    it('should return sequence', async () => {
+      try {
+        const count = new BN('0');
+        const Expected = new BN('0');
+        const Received = await stackitPooled[fn](count);
+        expect(Received).toEqual(Expected);
+      } catch (error) {
+        expect(error).toEqual('unknown error');
+      }
+    });
+  });
+
+
+  describe('check_time', () => {
+    const fn = 'check_time';
+
+    it('should return remaining time in seconds', async () => {
+      const count = new BN('0');
+      const Expected = new BN('0');
+      const Received = await stackitPooled[fn](count);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+})

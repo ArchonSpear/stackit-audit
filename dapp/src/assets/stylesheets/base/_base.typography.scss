@@ -1,0 +1,53 @@
+/* #BASE - TYPOGRAPHY
+		1. Typography default
+*/
+
+// 1. Typography default
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+	word-break: break-word;
+	word-wrap: break-word;
+	line-height: 1.3;
+	font-weight: 400;
+	color: $GREY_100;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: $FONT_MEDIUM;
+	margin: 0;
+}
+h1 {
+	font-size: $PX_42;
+	line-height: $PX_55;
+}
+h2 {
+	font-size: $PX_32;
+	margin-bottom: $PX_32;
+}
+h3 {
+	font-size: $PX_22;
+	line-height: $PX_30;
+}
+h4 {
+	font-size: $PX_20;
+}
+p {
+	margin: 0;
+	font-size: $PX_16;
+}
+ul,
+li {
+	padding-left: 0;
+	list-style: none;
+	margin: 0;
+}
+ol {
+	list-style-type: decimal;
+}

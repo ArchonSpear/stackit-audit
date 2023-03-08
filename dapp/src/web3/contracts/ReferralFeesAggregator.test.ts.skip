@@ -1,0 +1,128 @@
+//-----------------------------------------------------------------------------------------------//
+import { Addresses } from "../constants/addresses";
+import { Chains } from "../constants/chains";
+import { BN } from "../types/bn";
+import { ReferralFeesAggregator } from "./ReferralFeesAggregator";
+import { Assets } from "../constants/assets";
+
+
+//-----------------------------------------------------------------------------------------------//
+describe.skip('ReferralFeesAggregator', () => {
+  const referralFeesAggregator = new ReferralFeesAggregator(Chains.polygon);
+
+  beforeAll(() => {
+    jest.setTimeout(60000)
+  });
+
+
+  /***********************************************************************************************\
+   *  Variables
+  \***********************************************************************************************/
+
+  describe('tester', () => {
+    const fn = 'tester';
+
+    it('should return tester', async () => {
+      const Expected = new BN('0');
+      const Received = await referralFeesAggregator[fn]();
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  /***********************************************************************************************\
+   *  Mappings
+  \***********************************************************************************************/
+
+  describe('userAssets', () => {
+    const fn = 'userAssets';
+
+    it('should return userAssets', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const step = 0;
+      const Expected = '0xc2132D05D31c914a87C6611C10748AEb04B58e8F';
+      const Received = await referralFeesAggregator[fn](user, step);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('userAssetsExist', () => {
+    const fn = 'userAssetsExist';
+
+    it('should return userAssetsExist', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = true;
+      const Received = await referralFeesAggregator[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  describe('senderAllowed', () => {
+    const fn = 'senderAllowed';
+
+    it('should return senderAllowed', async () => {
+      const user = '0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861';
+      const Expected = false;
+      const Received = await referralFeesAggregator[fn](user);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  /***********************************************************************************************\
+   *  View Functions
+  \***********************************************************************************************/
+
+  describe('getuserAssetAmount', () => {
+    const fn = 'getuserAssetAmount';
+
+    it('should return asset amount', async () => {
+      const user = "0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861";
+      const asset = Addresses[Assets.DAI][Chains.polygon];
+      const Expected = new BN('9000000000000000');
+      const Received = await referralFeesAggregator[fn](user, asset);
+      expect(Received).toEqual(Expected);
+    })
+  })
+
+
+  /***********************************************************************************************\
+   *  Write Functions
+  \***********************************************************************************************/
+
+  describe.skip('addAmountToUser', () => {
+    const fn = 'addAmountToUser';
+
+    it('should return tx payload', async () => { // FIX ME
+      const amount = new BN('0');
+      const user = "0x1F8a6a5cABd68b528A8E3f44E2a1D20A49Fc8861";
+      const asset = Addresses[Assets.DAI][Chains.polygon];
+      const Expected = {
+        'data': '0x29b318b600000000000000000000000000000000000000000000000000000000000000000000000000000000000000001f8a6a5cabd68b528a8e3f44e2a1d20a49fc88610000000000000000000000008f3cf7ad23cd3cadbd9735aff958023239c6a063',
+        'gas': '0x2dc6c0',
+        'to': '0x3a28d679317a63433AA508F256E84bcD821A7F15',
+        'value': '0x0',
+      };
+      const Received = await referralFeesAggregator[fn](amount, user, asset);
+      expect(Received).toEqual(Expected);
+    });
+  });
+
+
+  describe('claimReferralFees', () => {
+    const fn = 'claimReferralFees';
+
+    it('should return tx payload', async () => {
+      const Expected = {
+        'data': '0x83a84ba9',
+        'gas': '0x7897',
+        'to': '0x3a28d679317a63433AA508F256E84bcD821A7F15',
+        'value': '0x0',
+      };
+      const Received = await referralFeesAggregator[fn]();
+      expect(Received).toEqual(Expected);
+    });
+  });
+})

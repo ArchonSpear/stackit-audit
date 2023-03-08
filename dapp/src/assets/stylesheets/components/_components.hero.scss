@@ -1,0 +1,47 @@
+/* #COMPONENTS - HERO
+		1. Hero default
+		2. Hero responsive
+*/
+
+// 1. Hero default
+.hero {
+	display: flex;
+	background-color: $HERO_BG;
+	position: relative;
+	padding: $PX_140 0 0;
+}
+.hero h1 {
+	color: $BLACK;
+}
+.hero h3 {
+	color: $GREY;
+}
+.hero__portfolio {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background: $WHITE;
+	border-radius: $BORDER_RADIUS_8;
+	padding: $PX_25;
+}
+.hero__portfolio ul {
+	font-family: $FONT_BOLD;
+	color: $BLACK;
+	min-width: $PX_120;
+}
+.hero__portfolio ul {
+	margin-right: $PX_20;
+}
+.hero__portfolio ul:last-child {
+	margin-right: 0;
+}
+.hero__portfolio ul li:last-child {
+	font-family: $FONT_MEDIUM;
+}
+
+// 2. Hero responsive
+@media screen and (max-width: $PX_990) {
+	.hero__portfolio {
+		flex-direction: column;
+	}
+}
